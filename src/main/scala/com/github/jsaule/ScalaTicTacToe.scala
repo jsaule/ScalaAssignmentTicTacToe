@@ -1,3 +1,5 @@
+package com.github.jsaule
+
 import scala.io.StdIn.readLine
 import scala.util.Random
 

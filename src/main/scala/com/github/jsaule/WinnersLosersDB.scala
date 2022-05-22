@@ -1,3 +1,5 @@
+package com.github.jsaule
+
 import java.sql.{Connection, DriverManager, PreparedStatement}
 
 class WinnersLosersDB(val dbPath: String) {
