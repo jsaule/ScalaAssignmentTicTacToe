@@ -102,19 +102,19 @@ class ScalaTicTacToe {
         println(s"\nWinner is ${board(pattern.head)}! Congratulations, $winnerName!")
         println(s"Better luck next time, $loserName!")
         println("\nGame result saved.")
+        val db = new WinnersLosersDB("src/resources/db/winners_losers.db")
+        db.migrate()
+        db.insertResults(winnerName, loserName)
+        db.connect.close()
         return true
       }
     })
     false
   }
 
-  val test = new WinnersLosersDB("src/resources/db/winners_losers.db")
-  println(test.connect.getMetaData.toString)
-
 }
 
 object ScalaTicTacToe extends App {
-println("check")
   //starting new game
   val game = new ScalaTicTacToe
 
