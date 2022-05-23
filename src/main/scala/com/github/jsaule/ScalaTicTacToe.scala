@@ -18,7 +18,7 @@ class ScalaTicTacToe {
   // starting board all possible positions
   val emptyBoard: Array[Char] = Array('1', '2', '3', '4', '5', '6', '7', '8', '9')
 
-  // all winning board positions sets
+  // all winning board position sets
   val winningSets: Set[Set[Int]] = Set(
     Set(0, 1, 2),
     Set(3, 4, 5),
@@ -30,11 +30,11 @@ class ScalaTicTacToe {
     Set(2, 4, 6)
   )
 
-  // initiating game
+  // initiates game
   printBoard(emptyBoard)
   nextTurn(emptyBoard)
 
-  // defining who's turn it is (human one, human two, computer) and requesting move input
+  // defines who's turn it is (human one, human two, computer), takes move input and initiates board print
   def nextTurn(board: Array[Char]): Unit = {
     val remainingTurns = board.count(_.toString.matches("[1-9]"))
     val next = if(remainingTurns%2 == 0) playerTwo.toCharArray.head else playerOne.toCharArray.head
@@ -46,13 +46,13 @@ class ScalaTicTacToe {
     }
   }
 
-  // returns move with computer's input (if it's game human vs. computer)
+  // returns computer's move input (if it's game human vs. computer)
   def computerInput(board: Array[Char]): Int = {
     val input = Random.nextInt(9).toString
     if (input.matches("[1-9]")) {
       val move = input.toInt -1
       if (board(move).isDigit) {
-        println("Computer made a move.")
+        println("Player '"+nextPlayer(board)+"' made a move.")
         move
       } else {
         computerInput(board)
@@ -62,9 +62,9 @@ class ScalaTicTacToe {
     }
   }
 
-  // returns move with human player's input (human one or human two)
+  // returns human player's move input (human one or human two)
   def moveInput(board: Array[Char]): Int = {
-    val input = readLine("Enter your board position number to move (between 1 and 9), player "+nextPlayer(board)+"! ")
+    val input = readLine("Enter your board position number to move (between 1 and 9), Player '"+nextPlayer(board)+"'! ")
     if (input.matches("[1-9]")) {
       val move = input.toInt -1
       if (board(move).isDigit) {
