@@ -67,11 +67,11 @@ class ScalaTicTacToe {
       if (board(move).isDigit) {
         move
       } else {
-        println("That position is already taken. Try again.")
+        println("That position is already taken. Try again. ")
         moveInput(board)
       }
     } else {
-      println("Your choice must be an integer between 1 and 9.")
+      println("Your choice must be a number between 1 and 9. ")
       moveInput(board)
     }
   }
@@ -95,7 +95,7 @@ class ScalaTicTacToe {
     println("\nNext Player is " + nextPlayer(board))
   }
 
-  // checking if it's win (saving results in that case) or forcing game to continue
+  // checking if it's win (saving results in data base (creating it and a table if they don't exist) in that case) or forcing game to continue
   def checkWin(board: Array[Char]): Boolean = {
     winningSets.foreach(pattern=>{
       if(pattern.forall(board(_) == board(pattern.head))) {
@@ -108,6 +108,10 @@ class ScalaTicTacToe {
         db.migrate()
         db.insertResults(winnerName, loserName)
         db.connect.close()
+        return true
+      }
+        else if(board.count(_.toString.matches("[1-9]")) == 0) {
+        println("It's a draw! Congratulations both!")
         return true
       }
     })
