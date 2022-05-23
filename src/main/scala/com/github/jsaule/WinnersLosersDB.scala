@@ -2,9 +2,19 @@ package com.github.jsaule
 
 import java.sql.{Connection, DriverManager, PreparedStatement}
 
+/**
+ * creates new database (if it doesn't exist) and imports game results
+ * @param dbPath
+ * @return new database and new tables (if they doesn't exist)
+ */
 class WinnersLosersDB(val dbPath: String) {
   val url = s"jdbc:sqlite:$dbPath"
   val connect: Connection = DriverManager.getConnection(url)
+
+  /**
+   * creates win_results table (if it doesn't exist)
+   * to store winners/losers/time of a game
+   */
   def migrate(): Unit = {
     val statement = connect.createStatement()
     val sql =
@@ -21,6 +31,11 @@ class WinnersLosersDB(val dbPath: String) {
     statement.execute(sql)
   }
 
+  /**
+   * takes game result and writes it into the win_results table
+   * @param winnerName
+   * @param loserName
+   */
   def insertResults(winnerName: String, loserName: String): Unit = {
 
     val insertSql =
@@ -38,6 +53,10 @@ class WinnersLosersDB(val dbPath: String) {
     preparedStmt.close()
   }
 
+  /**
+   * creates draw_results table (if it doesn't exist)
+   * to store player one name/player two name/time of a game
+   */
   def migrateDraw(): Unit = {
     val statement = connect.createStatement()
     val sql =
@@ -54,6 +73,11 @@ class WinnersLosersDB(val dbPath: String) {
     statement.execute(sql)
   }
 
+  /**
+   * takes game result and writes it into the draw_results table
+   * @param playerOneName
+   * @param playerTwoName
+   */
   def insertDrawResults(playerOneName: String, playerTwoName: String): Unit = {
 
     val insertSql =
