@@ -111,7 +111,14 @@ class ScalaTicTacToe {
         return true
       }
         else if(board.count(_.toString.matches("[1-9]")) == 0) {
-        println("It's a draw! Congratulations both!")
+        val playerOneName = inputNameOne
+        val playerTwoName = inputNameTwo
+        val db = new WinnersLosersDB("src/resources/db/winners_losers.db")
+        db.migrateDraw()
+        db.insertDrawResults(playerOneName, playerTwoName)
+        db.connect.close()
+        println(s"It's a draw! Congratulations both, $playerOneName and $playerTwoName!")
+        println("\nGame result saved.")
         return true
       }
     })
