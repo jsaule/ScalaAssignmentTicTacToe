@@ -11,7 +11,7 @@ lazy val root = (project in file("."))
 libraryDependencies += "org.xerial" % "sqlite-jdbc" % "3.36.0.3"
 
 // https://mvnrepository.com/artifact/org.scalatest/scalatest
-libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.12" % "Test"
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.12" % Test
 
 // https://mvnrepository.com/artifact/com.lihaoyi/upickle
 libraryDependencies += "com.lihaoyi" %% "upickle" % "1.6.0"
