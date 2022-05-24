@@ -7,7 +7,6 @@ import scala.util.Random
    * creates framework for the Tic Tac Toe game
    */
 class ScalaTicTacToe {
-
   /* intro + takes initial input from players (real player one vs. real player two
   OR real player one vs. computer) */
   println("Welcome to the Tic Tac Toe Game!")
@@ -46,7 +45,7 @@ class ScalaTicTacToe {
   /**
    * defines who's turn it is (human one, human two, computer), takes move input and
    * initiates board print
-   * @param board
+   * @param board: Array[Char]
    */
   def nextTurn(board: Array[Char]): Unit = {
     val remainingTurns = board.count(_.toString.matches("[1-9]"))
@@ -61,7 +60,7 @@ class ScalaTicTacToe {
 
   /**
    * returns computer's randomly generated move input (if it's game human vs. computer)
-   * @param board
+   * @param board: Array[Char]
    * @return move
    */
   def computerInput(board: Array[Char]): Int = {
@@ -78,10 +77,9 @@ class ScalaTicTacToe {
       computerInput(board)
     }
   }
-
   /**
    * returns human player's move input (human one or human two)
-   * @param board
+   * @param board: Array[Char]
    * @return move
    */
   def moveInput(board: Array[Char]): Int = {
@@ -102,7 +100,7 @@ class ScalaTicTacToe {
 
   /**
    * returns next player
-   * @param board
+   * @param board: Array[Char]
    * @return next
    */
   def nextPlayer(board: Array[Char]): Char = {
@@ -113,7 +111,7 @@ class ScalaTicTacToe {
 
   /**
    * prints board
-   * @param board
+   * @param board: Array[Char]
    */
   def printBoard(board: Array[Char]): Unit = {
     println(
@@ -129,7 +127,7 @@ class ScalaTicTacToe {
    * returns true or false if it's win or draw and saves results
    * (win or draw) in data base (creating it and tables if they don't
    * exist) if it's win or draw
-   * @param board
+   * @param board: Array[Char]
    * @return true/false; creates database and tables if true (if they don't exist),
    *         records result of a game
    */
